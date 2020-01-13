@@ -20,6 +20,9 @@ class SignIn extends React.Component{
             userValidity:''
         }
 
+        this.setEmail = this.setEmail.bind(this);
+        this.setPassword = this.setPassword.bind(this); 
+        this.singInButtonPress = this.singInButtonPress.bind(this);
     }
 
     setEmail(text){
@@ -39,6 +42,28 @@ class SignIn extends React.Component{
     }
 
     singInButtonPress(){
+        if (this.state.password.length == 0) {
+            this.setState({
+                passwordError:'password cant be null'
+            });
+            return;
+        }
+        else if(this.state.email.length == 0) {
+            this.setState({
+                emailError:'invalid email'
+            });
+            return;
+        }
+        else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email))){
+            this.setState({
+                emailError:'invalid email'
+            });
+            return;
+        }
+
+        this.setState({
+            userValidity:'Valid user'
+        })
 
     }
 
@@ -138,7 +163,7 @@ const styles = StyleSheet.create({
     container:{
       flex:1,
       backgroundColor:"white",
-      //alignItems:'center',
+    //   alignItems:'center',
       justifyContent:'center'
     },
 
