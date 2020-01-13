@@ -47,7 +47,8 @@ class SignIn extends React.Component{
                 passwordError:'password cant be null'
             });
             return;
-        }
+        }  
+        
         else if(this.state.email.length == 0) {
             this.setState({
                 emailError:'invalid email'
