@@ -20,9 +20,6 @@ class SignIn extends React.Component{
             userValidity:''
         }
 
-        this.setEmail = this.setEmail.bind(this);
-        this.setPassword = this.setPassword.bind(this); 
-        this.singInButtonPress = this.singInButtonPress.bind(this);
     }
 
     setEmail(text){
@@ -42,28 +39,6 @@ class SignIn extends React.Component{
     }
 
     singInButtonPress(){
-        if (this.state.password.length == 0) {
-            this.setState({
-                passwordError:'password cant be null'
-            });
-            return;
-        }
-        else if(this.state.email.length == 0) {
-            this.setState({
-                emailError:'invalid email'
-            });
-            return;
-        }
-        else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email))){
-            this.setState({
-                emailError:'invalid email'
-            });
-            return;
-        }
-
-        this.setState({
-            userValidity:'Valid user'
-        })
 
     }
 
@@ -76,7 +51,48 @@ class SignIn extends React.Component{
                 <Text style={styles.title}>
                     SignIn
                 </Text>
-
+                <View style={styles.form}>
+                    <View style={styles.row}>
+                        <View style={styles.rowIteam}>
+                            <Text style={styles.text}>Email</Text>
+                        </View>
+                        <View style={styles.rowIteam}>
+                            <TextInput placeholder="Email"
+                                underlineColorAndroid="black"
+                                 onChangeText={(text)=>this.setEmail(text)}
+                            />
+                            <Text style={styles.errorText}>{this.state.emailError}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.row}>
+                        <View style={styles.rowIteam}>
+                            <Text style={styles.text}>Password</Text>
+                        </View>
+                        <View style={styles.rowIteam}>
+                            <TextInput placeholder="password"
+                                underlineColorAndroid="black"
+                                secureTextEntry={true}
+                                onChangeText={(text)=>this.setPassword(text)}
+                            />
+                            <Text style={styles.errorText}>{this.state.passwordError}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.row}>
+                        <View style={styles.rowIteam}>
+                            
+                        </View>
+                        <View style={styles.rowIteamRight}>
+                            <TouchableOpacity style={styles.button} onPress={this.singInButtonPress}>
+                                <Text style={styles.buttonText}>
+                                    SignIn
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Text style={styles.errorTextCEnter}>
+                        {this.state.userValidity}
+                    </Text>
+                </View>
             </View>
         );
     }
@@ -122,7 +138,7 @@ const styles = StyleSheet.create({
     container:{
       flex:1,
       backgroundColor:"white",
-      alignItems:'center',
+      //alignItems:'center',
       justifyContent:'center'
     },
 
