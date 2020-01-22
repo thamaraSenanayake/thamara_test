@@ -47,7 +47,8 @@ class SignIn extends React.Component{
                 passwordError:'password cant be null'
             });
             return;
-        }
+        }  
+        
         else if(this.state.email.length == 0) {
             this.setState({
                 emailError:'invalid email'
@@ -76,7 +77,48 @@ class SignIn extends React.Component{
                 <Text style={styles.title}>
                     SignIn
                 </Text>
-
+                <View style={styles.form}>
+                    <View style={styles.row}>
+                        <View style={styles.rowIteam}>
+                            <Text style={styles.text}>Email</Text>
+                        </View>
+                        <View style={styles.rowIteam}>
+                            <TextInput placeholder="Email"
+                                underlineColorAndroid="black"
+                                 onChangeText={(text)=>this.setEmail(text)}
+                            />
+                            <Text style={styles.errorText}>{this.state.emailError}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.row}>
+                        <View style={styles.rowIteam}>
+                            <Text style={styles.text}>Password</Text>
+                        </View>
+                        <View style={styles.rowIteam}>
+                            <TextInput placeholder="password"
+                                underlineColorAndroid="black"
+                                secureTextEntry={true}
+                                onChangeText={(text)=>this.setPassword(text)}
+                            />
+                            <Text style={styles.errorText}>{this.state.passwordError}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.row}>
+                        <View style={styles.rowIteam}>
+                            
+                        </View>
+                        <View style={styles.rowIteamRight}>
+                            <TouchableOpacity style={styles.button} onPress={this.singInButtonPress}>
+                                <Text style={styles.buttonText}>
+                                    SignIn
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Text style={styles.errorTextCEnter}>
+                        {this.state.userValidity}
+                    </Text>
+                </View>
             </View>
         );
     }
@@ -122,7 +164,7 @@ const styles = StyleSheet.create({
     container:{
       flex:1,
       backgroundColor:"white",
-      alignItems:'center',
+    //   alignItems:'center',
       justifyContent:'center'
     },
 
